@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#1b2450" />
+    <meta name="description" content="The Lonely Road — a boring desert driving game that is not boring for long." />
+    <title>The Lonely Road</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231b2450'/%3E%3Cpath d='M13 32 15 6h2l2 26z' fill='%23f08a5d'/%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <canvas id="scene"></canvas>
+
+    <div id="hud" class="hud">
+      <div class="hud-item"><span class="label">Level</span><span id="hud-level" class="value">1</span></div>
+      <div class="hud-item"><span class="label">Attempt</span><span id="hud-attempt" class="value">1</span></div>
+      <div class="hud-item"><span class="label">km/h</span><span id="hud-speed" class="value">0</span></div>
+      <div class="hud-item"><span class="label">Time</span><span id="hud-time" class="value">0:00.00</span></div>
+    </div>
+
+    <button id="mute" class="icon-button" aria-label="Mute" aria-pressed="false" title="Mute (M)">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 9h4l5-4v14l-5-4H4z" />
+        <path class="wave" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" />
+        <path class="cross" d="M16 9l6 6M22 9l-6 6" />
+      </svg>
+    </button>
+
+    <div id="banner" class="banner" role="status" aria-live="polite"></div>
+
+    <section id="title-screen" class="screen visible" aria-hidden="false">
+      <div class="panel">
+        <p class="eyebrow">A relaxing drive through the desert</p>
+        <h1>The Lonely Road</h1>
+        <p class="lede">Keep the car on the road. It drives itself. There are no brakes.</p>
+        <button class="primary" data-action="start">Drive</button>
+        <p class="hint"><kbd>A</kbd> <kbd>D</kbd> or <kbd>←</kbd> <kbd>→</kbd> to steer · <kbd>M</kbd> mute</p>
+        <label class="toggle">
+          <input type="checkbox" id="spicy-toggle" />
+          <span class="switch" aria-hidden="true"></span>
+          <span>🌶️ Mode Pedas</span>
+        </label>
+        <p id="records" class="records"></p>
+      </div>
+    </section>
+
+    <section id="crash-screen" class="screen" aria-hidden="true">
+      <div class="panel">
+        <p id="crash-reason" class="eyebrow danger"></p>
+        <h2 id="taunt"></h2>
+        <p id="taunt-id" class="second-line" lang="id"></p>
+        <p id="crash-meta" class="meta"></p>
+        <button class="primary" data-action="retry">Try again</button>
+        <p class="hint"><kbd>Enter</kbd> / <kbd>Space</kbd></p>
+      </div>
+    </section>
+
+    <section id="finish-screen" class="screen" aria-hidden="true">
+      <div class="panel">
+        <p class="eyebrow">You reached the end of the road</p>
+        <h2 id="finish-message"></h2>
+        <p id="finish-message-id" class="second-line" lang="id"></p>
+        <dl class="stats">
+          <div><dt>Total time</dt><dd id="finish-time"></dd></div>
+          <div><dt>Total attempts</dt><dd id="finish-attempts"></dd></div>
+          <div><dt>Best time</dt><dd id="finish-best"></dd></div>
+          <div><dt>Fewest attempts</dt><dd id="finish-fewest"></dd></div>
+        </dl>
+        <button class="primary" data-action="restart">Drive again</button>
+      </div>
+    </section>
+
+    <div id="touch" class="touch">
+      <button id="touch-left" aria-label="Steer left">◀</button>
+      <button id="touch-right" aria-label="Steer right">▶</button>
+    </div>
+
+    <div id="fade" class="fade"></div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
